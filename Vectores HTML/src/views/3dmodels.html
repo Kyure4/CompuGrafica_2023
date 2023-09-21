@@ -10,15 +10,17 @@
 
     <script src="../libs/three.js-master/build/three.min.js"></script>
     <script src="../libs/controls/OrbitControls.js"></script>
+    <script src="../libs/load/OBJLoader.js"></script>
+    <script src="../libs/load/MTLLoader.js"></script>     
+
+    <script src="../js/model3d.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/3dmodels.js"></script>
-    <canvas id="app"></canvas>
 </head>
 
 <body onload="createThreejs()"> 
     <header style="position: relative;"> 
         <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="../../index.html">
+            <!--<a class="navbar-brand" href="../../index.html">
               <img src="../img/left-arrow.png" width="30" height="30" class="d-inline-block align-top" alt="">
               Retornar
             </a>
@@ -26,7 +28,7 @@
                 <button class="btn btn-outline-success" onclick="location.reload()" type="submit">Clear</button>  
                 <label for="colorpicker"> Color: </label>
                 <input type="color" id="colorpicker" value="#0000ff" >  
-                <button class="btn btn-outline-success" onclick="CreateGeometry()" type="submit">Build</button> 
+                <button class="btn btn-outline-success" onclick="CreateGeometry()" type="submit">Build</button> -->
         </nav>
     </header>
     <canvas style="position:fixed" id="app"></canvas>

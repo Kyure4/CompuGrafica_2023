@@ -1,7 +1,3 @@
-/*  Author(s): Samuel Rendon Rodriguez
-    Date of creation: 24/8/2023 9:41
-    Date of last modification: 24/8/2023 ?:??
-*/
 
 var scene = null,
     camera = null, 
@@ -9,6 +5,7 @@ var scene = null,
     SPEED = 0.01,
     cube = null,
     controls = null,
+    light = null,
     builds = 0;
     
 
@@ -27,6 +24,7 @@ function createThreejs(){
     document.body.appendChild( renderer.domElement );
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
+    camera.position.set(0,0,10)
     controls.update();
 
     //Grid helpers
@@ -37,8 +35,8 @@ function createThreejs(){
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
 
-    //Callers
-    //CreateGeometry();
+    createLights("AmbientLight");
+    loadObjMtl("../models/OBJ_MTL/personaje/", "smurfcat.mtl", "smurfcat.obj");
     animate();
 }
 
@@ -52,7 +50,7 @@ function onWindowResize(){
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
-function CreateGeometry(floors) {
+/*function CreateGeometry(floors) {
     let floorNumbers = document.getElementById("Floors").value;
     let floorColor = document.getElementById("colorpicker").value;
     for(var i=0; i<floorNumbers; i++ ){
@@ -81,7 +79,7 @@ function CreateGeometry(floors) {
     }
     builds += 1;
     camera.position.z = 5;
-}
+}*/
 
 function animate() {
 	requestAnimationFrame( animate );
@@ -97,26 +95,26 @@ function rotateCube() {
 
 function createLights(typeLights){
    switch(typeLights){
-
     case "PointLight":
         light = new THREE.PointLight( 0xffffff, 1, 100 );
         light.position.set( 50, 50, 50 );
-        scene.add( light );
+        scene.add(light);
 
         const sphereSize = 1;
-        const pointLightHelper = new THREE.PointLightHelper(Light, sphereSize );
-        scene.add( pointLightHelper );
+        const pointLightHelper = new THREE.PointLightHelper(light, sphereSize );
+        scene.add(pointLightHelper);
     break;
 
     case "SpotLight": 
         spotLight = new THREE.SpotLight( 0xffffff );
         spotLight.position.set( 100, 1000, 100 );
-        spotLight.map = new THREE.TextureLoader().load( url );
+        spotLight.map = new THREE.TextureLoader().load;
     break;
 
     case "AmbientLight":
-        const light = new THREE.AmbientLight( 0xffffff );
+        light = new THREE.AmbientLight( 0xffffff );
         scene.add( light );
     break;
    }
 }
+
