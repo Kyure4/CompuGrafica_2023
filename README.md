@@ -1,1 +1,0 @@
-# CompuGrafica_2023
