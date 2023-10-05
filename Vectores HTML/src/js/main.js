@@ -4,8 +4,7 @@ var scene = null,
     SPEED = 0.01,
     cube = null,
     controls = null,
-    light = null;
-    
+    light = null;    
 
 const size = 10;
 const divisions = 10;
@@ -23,7 +22,7 @@ function createThreejs(){
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     camera.position.set(0,0,10)
-    controls.update();
+   // controls.update();
 
     //Grid helpers
     const gridHelper = new THREE.GridHelper( size, divisions );

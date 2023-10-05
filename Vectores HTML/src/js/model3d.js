@@ -1,20 +1,3 @@
-function loadObjMtl(path, nameMTL, nameOBJ) {
-
-    var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setResourcePath(path);
-    mtlLoader.setPath(path);
-    mtlLoader.load(nameMTL, function (material) {
-        material.preload();
-
-    var objLoader = new THREE.OBJLoader();
-    objLoader.setPath(path);
-    objLoader.setMaterials(material);
-    objLoader.load(nameOBJ, function (object) {
-        scene.add(object);
-    });
-    });
-}
-
 function createCollectible(){
     var min = -15;
     var max = 15;
@@ -38,13 +21,5 @@ function gameState(Case){
         case "lose":
         document.getElementById("loseScreen").style.display = "block";
     }
-}
-
-function createPlayerCollision(){
-    const geometry = new THREE.BoxGeometry( 5, 10, 7 ); 
-    const material = new THREE.MeshBasicMaterial( {color: 0x00ff00, wireframe: true} ); 
-    const cube = new THREE.Mesh( geometry, material ); 
-    cube.position.y = 6
-    scene.add( cube );
 }
 
