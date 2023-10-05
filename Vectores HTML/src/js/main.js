@@ -1,12 +1,10 @@
-
 var scene = null,
     camera = null, 
     renderer = null,
     SPEED = 0.01,
     cube = null,
     controls = null,
-    light = null,
-    builds = 0;
+    light = null;
     
 
 const size = 10;
@@ -35,8 +33,11 @@ function createThreejs(){
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
 
+    createLights("SpotLight");
     createLights("AmbientLight");
     loadObjMtl("../models/OBJ_MTL/personaje/", "smurfcat.mtl", "smurfcat.obj");
+    createPlayerCollision();
+    createCollectible();
     animate();
 }
 
@@ -87,17 +88,11 @@ function animate() {
 	renderer.render( scene, camera );
 }
 
-function rotateCube() {
-    cube.rotation.x -= SPEED * 2;
-    cube.rotation.y -= SPEED;
-    cube.rotation.z -= SPEED * 3;
-}
-
 function createLights(typeLights){
    switch(typeLights){
     case "PointLight":
-        light = new THREE.PointLight( 0xffffff, 1, 100 );
-        light.position.set( 50, 50, 50 );
+        light = new THREE.PointLight( 0xffffff, 4, 100 );
+        light.position.set( 0, 50, 10 );
         scene.add(light);
 
         const sphereSize = 1;
@@ -107,7 +102,7 @@ function createLights(typeLights){
 
     case "SpotLight": 
         spotLight = new THREE.SpotLight( 0xffffff );
-        spotLight.position.set( 100, 1000, 100 );
+        spotLight.position.set( 0, 1000, -200 );
         spotLight.map = new THREE.TextureLoader().load;
     break;
 
